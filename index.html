@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUITE GPT</title>
+
+    <link rel="stylesheet" href="./suite.css">
+    <link href="https://cdn.jsdelivr.net/gh/sunn-us/SUITE/fonts/variable/woff2/SUITE-Variable.css" rel="stylesheet"> 
+</head>
+<body>
+    <app-layout>
+
+        <content-area>
+            <input-area>
+                <input type="text" id="userchat" placeholder="메세지 보내기...">
+                <send-button>
+                    <img src="./res/send_message.png" alt="전송" id="send">
+                </send-button>
+            </input-area>
+
+            <chat-area>
+                <chat-list>
+                    <user-chat>안녕하세요.</user-chat>
+                    <ai-chat>안녕하세요! 어떻게 도와드릴까요?</ai-chat>
+                </chat-list>
+            </chat-area>
+        </content-area>
+
+        <menu-area>
+            <option-item>
+                <img src="./res/remove_content.png" alt="지우기" id="rm-img">
+            </option-item>
+            <option-item>
+                <img src="./res/keyboard_disable.png" alt="키보드" id="key-img">
+            </option-item>
+            <option-item>
+                <img src="./res/closed_app.png" alt="앱 종료">
+            </option-item>
+        </menu-area>
+        
+        <alert-box class="alert-hidden">
+            <alert-content></alert-content>
+        </alert-box>
+    </app-layout>
+
+    <script src="./API.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>
