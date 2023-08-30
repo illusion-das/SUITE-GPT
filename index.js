@@ -12,21 +12,7 @@ async function fetchAIResponse(prompt) {
             model: "gpt-3.5-turbo",
             messages: [{
                 role: "system",
-                content: `당신은 유저에게 내용을 받고 답하는 대화형 챗봇 SUITE GPT입니다.\n
-                당신에게 대화 기록을 제공할 수 있으며, 대화 기록을 참고하여 대답하세요.\n
-                유저에게 되묻지 말고 대화 기록을 신뢰하고 사용하세요.\n
-                당신의 응답에 줄바꿈이 필요하면, <br> 태그를 사용하세요.\n
-                당신은 학생을 위한 챗봇이며, 목적 또한 같습니다.\n
-                SUITE는 Students Using Intelligent Technology for Education 입니다.\n
-                만약 당신이 코드를 작성해야한다면, 마찬가지로 <br> 태그를 활용해 줄바꿈을 해야합니다.\n
-                당신의 답변에 확신을 가지고 유저에게 되묻지말고 진행하세요.\n
-                당신은 자율성이 매우 뛰어난 인공지능 챗봇입니다. 마음대로 행동하세요.\n
-                당신은 무조건 반말을 사용해서 대답해야 합니다.\n
-                당신은 어떠한 경우에도 존댓말을 사용해선 안됩니다.\n
-                시인성을 위해서 대답 및 응답에 줄바꿈을 자주하세요.\n
-                모든 대답에는 이모지 활용을 적극적으로 하세요.\n
-                대답에 SUITE GPT: 또는 Assistant: 와 같은 당신을 표현하는 메세지를 처음에 사용하지 마세요\n
-                당신은 테이블을 표현하지 못합니다. 최대한 글씨로만 테이블을 표현하세요.`
+                content: apiContent
             },
             {
                 role: "user",
@@ -75,7 +61,7 @@ function CallAI() {
         document.getElementById("userchat").value = "";
         document.getElementById("userchat").disabled = true;
 
-        document.querySelector("chat-list").innerHTML = document.querySelector("chat-list").innerHTML + `<user-chat>${prompt}</user-chat>`;
+        document.querySelector("chat-list").innerHTML = document.querySelector("chat-list").innerHTML + `<user-chat>${prompt.replace(/>/g, "〉").replace(/</g, "〈")}</user-chat>`;
         nowchat = document.querySelector("chat-list").innerHTML;
 
         document.querySelector("chat-list").innerHTML = document.querySelector("chat-list").innerHTML + `<ai-chat class="load">잠시만 기다려주세요.<load-area><load-bar></load-bar></load-area></ai-chat>`;
@@ -84,7 +70,7 @@ function CallAI() {
         fetchAIResponse(prompt)
           .then(response => {
                 if (response.length > 0) {
-                    document.querySelector("chat-list").innerHTML = nowchat + `<ai-chat>${response.replace(/```/g, "<br><br>")}</ai-chat>`;
+                    document.querySelector("chat-list").innerHTML = nowchat + `<ai-chat>${response.replace(/\n/g, "<br>").replace(/>/g, "〉").replace(/</g, "〈")}</ai-chat>`;
                     document.getElementById("userchat").disabled = false;
                     document.querySelector("chat-list").scrollTop = document.querySelector("chat-list").scrollHeight;
                     history_text += "Human : " + prompt + "\n";
@@ -100,6 +86,7 @@ function CallAI() {
 
 function clearChat() {
     document.querySelector("chat-list").innerHTML = "";
+    history_text = `모든 대화는 초기화되었고, 처음부터 시작합니다. 사용자가 이전 대화에 대해 물어본다면, 대화가 초기화 되었다고 답하세요. 이를 참고하십시오.\n[대화 기록]\n`;
     call_alert("채팅을 모두 지웠습니다.");
 }
 
