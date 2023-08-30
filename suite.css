@@ -173,6 +173,7 @@ ai-chat {
     filter: drop-shadow(0 0 14px #C9D8FF3F);
     color: #0e0e0ef8;
     text-align: left;
+    white-space: pre-wrap;
 }
 
 .load {
@@ -232,10 +233,11 @@ more-content {
     margin-bottom: 110px;
     margin-right: 130px;
     opacity: 1.0;
-    transition: 0.2s ease-in;
+    transition: 0.25s ease-in;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+    color: #3B4DF3;
 }
 
 more-button {
@@ -254,7 +256,7 @@ more-button {
 
 .intext #userchat {
     border: 6px solid #3B4DF3;
-    border-radius: 20px;
+    border-radius: 24px;
     font-size: 30px;
 }
 
@@ -273,9 +275,8 @@ more-button {
 }
 
 .hidden-more {
-    transform: scale(0%) translateY(325%);
-    margin-right: 25px;
-    opacity: 0.0;
+    transform: translateY(100%);
+    opacity: -10.0;
 }
 
 more-icon {
@@ -286,10 +287,10 @@ more-icon {
 
 more-text {
     position: absolute;
-    margin-top: 15px;
+    margin-top: 13px;
     right: 0;
     margin-right: 28px;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 700;
 }
 
