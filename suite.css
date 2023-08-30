@@ -216,7 +216,6 @@ load-bar {
     }
 }
 
-
 .hidden-chat {
     opacity: 0.0;
 }
@@ -231,7 +230,7 @@ more-content {
     bottom: 0;
     right: 0;
     margin-bottom: 110px;
-    margin-right: 65px;
+    margin-right: 130px;
     opacity: 1.0;
     transition: 0.2s ease-in;
     display: flex;
@@ -274,8 +273,8 @@ more-button {
 }
 
 .hidden-more {
-    transform: scale(0%) translateY(300%);
-    margin-right: -36px;
+    transform: scale(0%) translateY(325%);
+    margin-right: 25px;
     opacity: 0.0;
 }
 
