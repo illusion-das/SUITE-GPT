@@ -37,6 +37,8 @@
 
             <chat-area>
                 <chat-list>
+                    <img src="./res/start.png" id="start">
+                    <margin-chat></margin-chat>
                 </chat-list>
             </chat-area>
 
@@ -54,6 +56,8 @@
                     <more-text>앱 나가기</more-text>
                 </more-button>
             </more-content>
+
+            <warning-box>SUITE AI는 <logofont>PLAYGROUND™</logofont>를 대변하지 않아요. 아직 실험적이고, 제공하는 정보가 부정확 할 수 있어요.</warning-box>
         </content-area>
 
         <alert-box class="alert-hidden">
@@ -64,6 +68,8 @@
             <audio src="./KRVK/res/Typing.mp3" id="typing_feedback"></audio>
             <keyboard-close onclick="keyboard_close();"></keyboard-close>
         </div>
+
+        <blur-mix></blur-mix>
     </app-layout>
 
     <script src="./API.js"></script>
