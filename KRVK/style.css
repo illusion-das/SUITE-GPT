@@ -1,0 +1,125 @@
+
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/variable/pretendardvariable.css");
+
+:root {
+    --keyboard-background: #e8eaed;
+    --keyboard-drop-shadow: #00000070;
+
+    --keyboard-key: linear-gradient(0.3turn, #ffffff, #f5f5f5);
+    --keyboard-key-function: linear-gradient(140deg, #DADEFF 0%, #C9D8FF 100%);
+    --keyboard-key-highlight: linear-gradient(140deg, #3B4DF3 0%, #3D73FF 100%);
+    --keyboard-key-drop-shadow: #0000002A;
+
+    --keyboard-text-hightlight: #ffffffe7;
+    --keyboard-text-function: #2b2a2be2;
+
+    --movebar-color: #2b2a2b30;
+}
+
+body {
+    font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+keyboard-layout {
+    width: 100%;
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+#keyboardzone {
+    position: absolute;
+    width: 100%;
+    height: 360px;
+    padding: 18px 0 0 0;
+    background: var(--keyboard-background);
+    filter: drop-shadow(6px 6px 36px var(--keyboard-drop-shadow));
+    bottom: 0;
+
+    user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+table {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+}
+
+th {
+    width: 100px;
+    background: var(--keyboard-key);
+    filter: drop-shadow(1px 1px 2px var(--keyboard-key-drop-shadow));
+    border-radius: 12px;
+    font-size: 1.9rem;
+    margin: 0 6px 0 6px;
+}
+
+keyboard-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.disable {
+    position: absolute;
+    visibility: hidden;
+}
+
+.highlight,
+.function {
+    font-size: 2.1rem;
+    font-weight: 800;
+}
+
+.highlight {
+    width: 120px;
+    background: var(--keyboard-key-highlight);
+    color: var(--keyboard-text-hightlight);
+}
+
+.function {
+    width: 120px;
+    background: var(--keyboard-key-function);
+    color: var(--keyboard-text-function);
+}
+
+.spacebar {
+    width: 807px;
+}
+
+.long-width {
+    width: 145px;
+}
+
+keyboard-close {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url(./res/button.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    opacity: 0.7;
+    margin-right: 36px;
+    margin-bottom: 16px;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+}
+
+.keyboard-close-animation {
+    transition: 0.25s ease-in;
+}
+
+.close-animation {
+    transform: translateY(200%);
+}
+
+.hidden {
+    display: none;
+}
