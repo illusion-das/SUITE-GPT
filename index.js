@@ -118,3 +118,7 @@ function callMore() {
         document.querySelector("more-content").classList.add("hidden-more");
     }
 }
+
+function back_site() {
+    location.href = "https://illusion-das.github.io/SUITE/";
+}
