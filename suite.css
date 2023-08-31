@@ -352,3 +352,9 @@ logofont {
     font-weight: bold;
     color: #1b1f2d4a;
 }
+
+logofont-mid {
+    font-family: 'GmarketSans';
+    font-weight: middle;
+    color: #1b1f2d46;
+}

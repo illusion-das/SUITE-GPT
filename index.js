@@ -1,6 +1,7 @@
 
 let history_text = `[대화 기록]\n`;
-
+let talk_count = 0;
+let final_history_len = 0;
 
 async function fetchAIResponse(prompt) {
     const requestOptions = {
@@ -22,8 +23,8 @@ async function fetchAIResponse(prompt) {
             temperature: 0.8,
             max_tokens: 786,
             top_p: 1,
-            frequency_penalty: 0.51,
-            presence_penalty: 0.51,
+            frequency_penalty: 0.47,
+            presence_penalty: 0.49,
             stop: ["Human"],
         }),
     };
@@ -58,6 +59,13 @@ function CallAI() {
     
     if (prompt.length > 0) {
 
+        if(talk_count > 7) {
+            cutarea = history_text.length - final_history_len;
+            history_text = `[대화 기록]\n` + history_text.substring(cutarea);
+            console.error("Optimized");
+            console.warn(history_text);
+        }
+
         if(!document.getElementById("start").classList.contains("hidden-image")) {
             document.getElementById("start").classList.add("hidden-image");
         }
@@ -75,12 +83,16 @@ function CallAI() {
         fetchAIResponse(prompt)
           .then(response => {
                 if (response.length > 0) {
-                    document.querySelector("chat-list").innerHTML = nowchat + `<ai-chat>${response.replace(/\n/g, "\newlineTag").replace(/>/g, "〉").replace(/</g, "〈").replace(/\newlineTag/g, "<br>")}</ai-chat>`;
+                    talk_count++;
+                    document.querySelector("chat-list").innerHTML = nowchat + `<ai-chat>${response.replace(/\n/g, "\newlineTag").replace(/>/g, "〉").replace(/</g, "〈").replace(/\newlineTag/g, "<br>").replace("SUITE AI : ", "").replace("SUITE AI: ", "")}</ai-chat>`;
                     document.getElementById("userchat").disabled = false;
                     document.getElementById("userchat").placeholder = "메세지 보내기...";
                     document.querySelector("chat-list").scrollTop = document.querySelector("chat-list").scrollHeight;
                     history_text += "Human : " + prompt + "\n";
-                    history_text += "SUITE GPT : " + response + "\n";
+                    history_text += "SUITE AI : " + response + "\n";
+                    final_history_len = ("Human : " + prompt + "\n").length + ("SUITE AI : " + response + "\n").length;
+                    console.log(history_text);
+                    console.warn(final_history_len);
                 }
             })
           .catch(error => {
@@ -95,8 +107,8 @@ function CallAI() {
 
 function clearChat() {
     document.querySelector("chat-list").innerHTML = '<img src="./res/start.png" id="start"><margin-chat></margin-chat>';
-    history_text = `모든 대화는 초기화되었고, 처음부터 시작합니다. 사용자가 이전 대화에 대해 물어본다면, 대화가 초기화 되었다고 답하세요. 이를 참고하십시오.\n[대화 기록]\n`;
-    call_alert("채팅을 모두 지웠습니다.");
+    history_text = `[대화 기록]\n`;
+    call_alert("새로운 주제를 시작하였습니다.");
 }
 
 function callMore() {
